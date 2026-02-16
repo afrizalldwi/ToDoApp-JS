@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-300">
+    <main class="container mx-auto p-14">
+      <h1 class="font-bold text-center text-2xl">ToDo App JavaScript</h1>
+      <div class="flex justify-center items-center mt-8">
+        <form id="form-todo">
+          <input
+            id="input-todo"
+            type="text"
+            placeholder="Tambah task baru..."
+            class="bg-white border border-gray-500 p-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            class="bg-blue-900 hover:bg-blue-900/85 active:bg-blue-900/75 text-white p-6 rounded-md ml-4 cursor-pointer"
+          >
+            Tambah
+          </button>
+        </form>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4" id="render"></div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
