@@ -12,6 +12,6 @@ Preview dari app ini bisa dilihat di file [preview.png](./preview.png) yaa man t
 ## Clone Repo
 Jika ingin clone repo ini bisa gunakan command dibawah ini yaa
 ```
-git clone
+git clone https://github.com/afrizalldwi/ToDoApp-JS.git
 ```
 Selamat mencoba
