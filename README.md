@@ -14,4 +14,4 @@ Jika ingin clone repo ini bisa gunakan command dibawah ini yaa
 ```
 git clone https://github.com/afrizalldwi/ToDoApp-JS.git
 ```
-Selamat mencoba
+Selamat mencoba 🙌
