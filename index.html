@@ -13,21 +13,25 @@
       rel="stylesheet"
     />
   </head>
-  <body class="bg-gray-300">
+  <body class="bg-slate-900">
     <main
-      class="bg-white w-full max-w-xl mx-auto mt-10 sm:mt-16 p-6 sm:p-10 shadow-[0.5em_0.5em]"
+      class="bg-slate-800 w-full border-4 rounded-md border-black max-w-xl mx-auto mt-10 sm:mt-16 p-6 sm:p-10 shadow-[6px_6px_rgba(0,0,0,0.4)]"
     >
-      <h1 class="font-bold text-center text-2xl">ToDo App</h1>
+      <h1 class="font-bold text-center text-2xl text-gray-100">ToDo App</h1>
+      <div
+        id="error-message"
+        class="text-red-400 text-sm my-4 text-center bg-red-500/10 border border-red-500/30 rounded-md px-4 py-2 shadow-sm hidden fade-in"
+      ></div>
       <form id="form-todo" class="flex flex-col sm:flex-row gap-4 mt-8">
         <input
           id="input-todo"
           type="text"
           placeholder="Tambah task baru..."
-          class="flex-1 border-3 border-[#999] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-[0.2em_0.2em_#999]"
+          class="bg-slate-800 flex-1 rounded-md border border-slate-600 text-gray-100 px-6 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-[6px_6px_rgba(0,0,0,0.4)] transition-all duration-150 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
         />
         <button
           type="submit"
-          class="bg-blue-900 border-3 border-black hover:bg-blue-800 active:bg-blue-700 text-white px-6 py-3 shadow-[0.2em_0.2em_black]"
+          class="bg-blue-600 rounded-md border-3 border-black hover:bg-blue-700 active:bg-blue-800 text-white px-6 py-3 shadow-[6px_6px_rgba(0,0,0,0.4)] cursor-pointer transition-all duration-150 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
         >
           Tambah
         </button>

@@ -18,7 +18,7 @@ form.addEventListener("submit", (e) => {
   const todoValue = todo.value.trim();
 
   if (todoValue === "") {
-    alert("ToDo tidak boleh kosong!!");
+    showErrorMessage("Tidak boleh kosong!");
     todo.focus();
     return;
   }
@@ -53,13 +53,45 @@ const renderTampilan = () => {
     const div = document.createElement("div");
 
     div.innerHTML = `
-        <div class="bg-gray-300 mt-8 rounded-sm max-w-full p-6 flex justify-between items-start gap-4">
-          <p class="break-words flex-1">
-            ${list.todo}
-          </p>
-          <div class="flex flex-col gap-2 min-w-[80px]">
-            <button onclick="editTodo(${realIndex})" class="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 duration-300 text-white px-4 py-2 rounded-sm cursor-pointer">Edit</button>
-            <button onclick="deleteTodo(${realIndex})" class="bg-red-600 hover:bg-red-700 active:bg-red-800 duration-300 text-white px-4 py-2 rounded-sm cursor-pointer">Delete</button>
+        <div class="bg-slate-700 text-gray-100 border border-slate-600 shadow-[0_8px_20px_rgba(0,0,0,0.35)] rounded-md mt-8 max-w-full p-6 flex justify-between items-start gap-4">
+          <div class="flex-1">
+            <p id="text-${realIndex}" class="break-words">
+              ${list.todo}
+            </p>
+
+            <input 
+              id="input-edit-${realIndex}"
+              type="text"
+              value="${list.todo}"
+              class="hidden w-full mt-2 bg-slate-800 border border-slate-500 rounded-md px-3 py-2 text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2 min-w-[90px]">
+
+            <button 
+              onclick="editTodo(${realIndex})"
+              id="btn-edit-${realIndex}"
+              class="bg-amber-500 hover:bg-amber-600 active:bg-amber-700 border-3 rounded-md border-black px-4 py-2 cursor-pointer shadow-[6px_6px_rgba(0,0,0,0.4)] transition-all duration-150 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
+            >
+              Edit
+            </button>
+
+            <button 
+              onclick="saveEdit(${realIndex})"
+              id="btn-save-${realIndex}"
+              class="hidden bg-green-500 hover:bg-green-600 border-3 rounded-md border-black px-4 py-2 cursor-pointer shadow-[6px_6px_rgba(0,0,0,0.4)] transition-all duration-150 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
+            >
+              Save
+            </button>
+
+            <button 
+              onclick="deleteTodo(${realIndex})"
+              class="bg-red-500 hover:bg-red-600 active:bg-red-700 border-3 rounded-md border-black px-4 py-2 cursor-pointer shadow-[6px_6px_rgba(0,0,0,0.4)] transition-all duration-150 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
+            >
+              Delete
+            </button>
+
           </div>
         </div>
         `;
@@ -85,8 +117,8 @@ const renderPagination = (totalData) => {
     btn.textContent = i;
 
     btn.className = `
-      px-3 py-1 rounded-md text-sm cursor-pointer
-      ${i === currentPage ? "bg-blue-900 hover:bg-blue-950 text-white duration-300" : "bg-gray-300 hover:bg-gray-400 active:bg-gray-500 duration-300"}
+      px-3 py-1 text-sm cursor-pointer rounded-md border-3 border-black shadow-[0_4px_10px_rgba(0,0,0,0.3)] transition-all duration-150 active:translate-x-[4px] active:translate-y-[4px] active:shadow-none
+      ${i === currentPage ? "bg-blue-500 hover:bg-blue-600 text-gray-100" : "bg-gray-300 hover:bg-gray-400 active:bg-gray-500"}
     `;
 
     btn.onclick = () => {
@@ -107,13 +139,34 @@ const deleteTodo = (index) => {
 };
 
 const editTodo = (index) => {
-  const newValue = prompt("Edit todo:", dataTodo[index].todo);
+  document.getElementById(`text-${index}`).classList.add("hidden");
+  document.getElementById(`input-edit-${index}`).classList.remove("hidden");
 
-  if (newValue === null || newValue === "") return;
+  document.getElementById(`btn-edit-${index}`).classList.add("hidden");
+  document.getElementById(`btn-save-${index}`).classList.remove("hidden");
+};
 
-  dataTodo[index].todo = newValue.trim();
+const saveEdit = (index) => {
+  const input = document.getElementById(`input-edit-${index}`);
+  const newValue = input.value.trim();
+
+  if (newValue === "") {
+    showErrorMessage("Tidak boleh kosong!");
+    return;
+  }
+
+  dataTodo[index].todo = newValue;
   saveData();
   renderTampilan();
+};
+
+const showErrorMessage = (message) => {
+  const errorMessage = document.getElementById("error-message");
+  errorMessage.textContent = message;
+  errorMessage.style.display = "block";
+  setTimeout(() => {
+    errorMessage.style.display = "none";
+  }, 3000);
 };
 
 renderTampilan();
